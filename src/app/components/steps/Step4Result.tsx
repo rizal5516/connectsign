@@ -3,8 +3,6 @@
 import Image from "next/image";
 import LoadingOverlay from "../ui/LoadingOverlay";
 import StepBreadcrumb from "../ui/StepBreadcrumb";
-import HeaderLogo from "../ui/HeaderLogo";
-import FooterLogo from "../ui/FooterLogo";
 
 interface Props {
   signedPdfUrls: string[];
@@ -14,33 +12,21 @@ interface Props {
   onReset: () => void;
 }
 
-export default function Step4Result({
-  isLoading,
-  originalFileName,
-  onReset,
-}: Props) {
+export default function Step4Result({ isLoading, onReset }: Props) {
   return (
     <div className="relative min-h-screen bg-gradient-to-br from-[#E8F7FF] via-white to-[#FFF8E6] flex justify-center items-center px-6 py-12 overflow-hidden">
       <StepBreadcrumb currentStep={4} />
-
       {isLoading && (
         <LoadingOverlay message="Menyiapkan dokumen akhir, mohon tunggu..." />
       )}
 
-      {/* ── Background ornaments ── */}
-
-      {/* Top stripe */}
-      <div className="pointer-events-none absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-[#0C4F81] via-[#2FAAE1] to-[#FFA62B]" />
-      {/* Bottom stripe */}
-      <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-[#FFA62B] via-[#2FAAE1] to-[#0C4F81]" />
+      {/* ── Page ornaments ── */}
+      <div className="pointer-events-none absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#0C4F81] via-[#2FAAE1] to-[#FFA62B]" />
+      <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#FFA62B] via-[#2FAAE1] to-[#0C4F81]" />
 
       {/* Top-left concentric arcs */}
       <div className="pointer-events-none absolute top-0 left-0 w-80 h-80 opacity-[0.07]">
-        <svg
-          viewBox="0 0 320 320"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
+        <svg viewBox="0 0 320 320" fill="none">
           {[40, 70, 100, 130, 160, 190, 220].map((r, i) => (
             <circle
               key={i}
@@ -55,14 +41,10 @@ export default function Step4Result({
         </svg>
       </div>
 
-      {/* Bottom-left golden arc */}
+      {/* Bottom-left golden arcs */}
       <div className="pointer-events-none absolute bottom-0 left-0 opacity-[0.06] w-96 h-96">
-        <svg
-          viewBox="0 0 384 384"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          {[80, 110, 140, 170, 200, 230].map((r, i) => (
+        <svg viewBox="0 0 384 384" fill="none">
+          {[80, 110, 140, 170, 200].map((r, i) => (
             <circle
               key={i}
               cx="0"
@@ -76,228 +58,341 @@ export default function Step4Result({
         </svg>
       </div>
 
-      {/* Floating dot grid center-left */}
+      {/* Dot grid left */}
       <div
-        className="pointer-events-none absolute left-0 top-1/4 w-48 h-48 opacity-[0.05]"
+        className="pointer-events-none absolute left-0 top-1/3 w-40 h-40 opacity-[0.05]"
         style={{
           backgroundImage:
-            "radial-gradient(circle, #0C4F81 1.5px, transparent 1.5px)",
+            "radial-gradient(circle,#0C4F81 1.5px,transparent 1.5px)",
           backgroundSize: "20px 20px",
         }}
       />
-      {/* Floating dot grid center-right */}
+      {/* Dot grid right */}
       <div
-        className="pointer-events-none absolute right-0 bottom-1/4 w-48 h-48 opacity-[0.05]"
+        className="pointer-events-none absolute right-0 bottom-1/3 w-40 h-40 opacity-[0.05]"
         style={{
           backgroundImage:
-            "radial-gradient(circle, #0C4F81 1.5px, transparent 1.5px)",
+            "radial-gradient(circle,#0C4F81 1.5px,transparent 1.5px)",
           backgroundSize: "20px 20px",
         }}
       />
 
       {/* ── Main card ── */}
-      <div className="relative z-10 w-full max-w-lg mt-16">
+      <div className="relative z-10 w-full max-w-md mt-16">
         <div className="relative bg-white/95 backdrop-blur-md rounded-3xl shadow-2xl border border-[#2FAAE1]/30 overflow-hidden">
-          {/* Card top accent stripe */}
+          {/* Top stripe */}
           <div className="h-1.5 bg-gradient-to-r from-[#0C4F81] via-[#2FAAE1] to-[#FFA62B]" />
 
-          {/* Card header – navy government band */}
-          <div className="relative bg-gradient-to-br from-[#0C4F81] to-[#1a6aaa] px-8 pt-8 pb-6 flex flex-col items-center overflow-hidden">
-            {/* Dot pattern overlay */}
+          {/* Navy header */}
+          <div className="relative bg-gradient-to-br from-[#0C4F81] to-[#1a6aaa] px-8 pt-7 pb-5 flex flex-col items-center overflow-hidden">
             <div
               className="pointer-events-none absolute inset-0 opacity-10"
               style={{
                 backgroundImage:
-                  "radial-gradient(circle, #ffffff 1px, transparent 1px)",
+                  "radial-gradient(circle,#ffffff 1px,transparent 1px)",
                 backgroundSize: "18px 18px",
               }}
             />
-            {/* Side arc ornament inside header */}
-            <div className="pointer-events-none absolute -left-6 -top-6 w-32 h-32 opacity-20">
-              <svg viewBox="0 0 128 128" fill="none">
-                {[30, 50, 70].map((r, i) => (
+            <div className="pointer-events-none absolute -left-5 -top-5 w-28 h-28 opacity-20">
+              <svg viewBox="0 0 112 112" fill="none">
+                {[28, 46, 64].map((r, i) => (
                   <circle
                     key={i}
                     cx="0"
                     cy="0"
                     r={r}
                     stroke="white"
-                    strokeWidth="6"
-                    strokeDasharray="5 8"
+                    strokeWidth="5"
+                    strokeDasharray="4 7"
                   />
                 ))}
               </svg>
             </div>
-            <div className="pointer-events-none absolute -right-6 -bottom-6 w-32 h-32 opacity-20">
-              <svg viewBox="0 0 128 128" fill="none">
-                {[30, 50, 70].map((r, i) => (
+            <div className="pointer-events-none absolute -right-5 -bottom-5 w-28 h-28 opacity-20">
+              <svg viewBox="0 0 112 112" fill="none">
+                {[28, 46, 64].map((r, i) => (
                   <circle
                     key={i}
-                    cx="128"
-                    cy="128"
+                    cx="112"
+                    cy="112"
                     r={r}
                     stroke="#FFA62B"
-                    strokeWidth="6"
-                    strokeDasharray="5 8"
+                    strokeWidth="5"
+                    strokeDasharray="4 7"
                   />
                 ))}
               </svg>
             </div>
-
-            <div className="mb-3 z-10">
+            <div className="z-10 mb-2">
               <Image
                 src="/assets/images/white-logo-blpid.png"
                 alt="BLPID"
-                width={200}
-                height={52}
-                className="object-contain h-12 w-auto"
+                width={180}
+                height={46}
+                className="object-contain h-14 w-auto"
               />
             </div>
           </div>
 
-          {/* Floating seal badge – centered on the seam */}
-          <div className="flex justify-center -mt-8 relative z-20">
-            <div className="w-16 h-16 rounded-full bg-white shadow-xl border-4 border-[#2FAAE1]/40 flex items-center justify-center">
+          {/* Card body */}
+          <div className="px-8 pb-8 pt-7 flex flex-col items-center text-center">
+            {/* ── Signed document illustration ── */}
+            <div className="relative mb-6">
+              {/* Glow */}
+              <div className="absolute inset-0 blur-2xl opacity-30 rounded-full bg-[#2FAAE1]" />
               <svg
-                viewBox="0 0 64 64"
-                className="w-10 h-10"
+                viewBox="0 0 160 200"
+                className="relative w-32 h-40 drop-shadow-xl"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <circle
-                  cx="32"
-                  cy="32"
-                  r="30"
-                  stroke="#0C4F81"
-                  strokeWidth="2"
-                  strokeDasharray="4 3"
+                {/* Document shadow */}
+                <rect
+                  x="18"
+                  y="12"
+                  width="120"
+                  height="175"
+                  rx="8"
+                  fill="#e2e8f0"
                 />
-                <circle
-                  cx="32"
-                  cy="32"
-                  r="22"
-                  stroke="#2FAAE1"
+                {/* Document body */}
+                <rect
+                  x="12"
+                  y="6"
+                  width="120"
+                  height="175"
+                  rx="8"
+                  fill="white"
+                  stroke="#e2e8f0"
                   strokeWidth="1.5"
                 />
-                {Array.from({ length: 12 }).map((_, i) => {
-                  const a = (i * 30 * Math.PI) / 180;
+                {/* Header strip */}
+                <rect
+                  x="12"
+                  y="6"
+                  width="120"
+                  height="30"
+                  rx="8"
+                  fill="#0C4F81"
+                />
+                <rect x="12" y="24" width="120" height="12" fill="#0C4F81" />
+                {/* Garuda / seal circle on header */}
+                <circle cx="72" cy="21" r="10" fill="white" opacity="0.15" />
+                <circle cx="72" cy="21" r="7" fill="white" opacity="0.15" />
+                {/* Header lines */}
+                <rect
+                  x="30"
+                  y="13"
+                  width="50"
+                  height="5"
+                  rx="2"
+                  fill="white"
+                  opacity="0.7"
+                />
+                <rect
+                  x="30"
+                  y="21"
+                  width="35"
+                  height="3"
+                  rx="1.5"
+                  fill="white"
+                  opacity="0.4"
+                />
+                {/* Content lines */}
+                <rect
+                  x="22"
+                  y="46"
+                  width="85"
+                  height="5"
+                  rx="2"
+                  fill="#cbd5e1"
+                />
+                <rect
+                  x="22"
+                  y="57"
+                  width="100"
+                  height="4"
+                  rx="2"
+                  fill="#e2e8f0"
+                />
+                <rect
+                  x="22"
+                  y="67"
+                  width="90"
+                  height="4"
+                  rx="2"
+                  fill="#e2e8f0"
+                />
+                <rect
+                  x="22"
+                  y="77"
+                  width="95"
+                  height="4"
+                  rx="2"
+                  fill="#e2e8f0"
+                />
+                <rect
+                  x="22"
+                  y="87"
+                  width="75"
+                  height="4"
+                  rx="2"
+                  fill="#e2e8f0"
+                />
+                {/* Divider */}
+                <rect
+                  x="22"
+                  y="100"
+                  width="100"
+                  height="1"
+                  rx="0.5"
+                  fill="#e2e8f0"
+                />
+                {/* Second paragraph */}
+                <rect
+                  x="22"
+                  y="108"
+                  width="100"
+                  height="4"
+                  rx="2"
+                  fill="#e2e8f0"
+                />
+                <rect
+                  x="22"
+                  y="118"
+                  width="88"
+                  height="4"
+                  rx="2"
+                  fill="#e2e8f0"
+                />
+                <rect
+                  x="22"
+                  y="128"
+                  width="93"
+                  height="4"
+                  rx="2"
+                  fill="#e2e8f0"
+                />
+                {/* Signature area */}
+                <rect
+                  x="22"
+                  y="143"
+                  width="55"
+                  height="28"
+                  rx="5"
+                  fill="#f0f9ff"
+                  stroke="#2FAAE1"
+                  strokeWidth="1"
+                  strokeDasharray="3 2"
+                />
+                {/* Signature scribble */}
+                <path
+                  d="M28 162 Q35 152 40 158 Q46 164 50 155 Q55 148 62 156 Q67 162 72 157"
+                  stroke="#0C4F81"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  fill="none"
+                />
+                {/* Stamp circle */}
+                <circle
+                  cx="105"
+                  cy="157"
+                  r="18"
+                  fill="#fff5e6"
+                  stroke="#FFA62B"
+                  strokeWidth="1.5"
+                  strokeDasharray="3 2"
+                />
+                <circle
+                  cx="105"
+                  cy="157"
+                  r="13"
+                  stroke="#FFA62B"
+                  strokeWidth="1"
+                />
+                {/* Stamp star rays */}
+                {Array.from({ length: 8 }).map((_, i) => {
+                  const a = (i * 45 * Math.PI) / 180;
                   return (
                     <line
                       key={i}
-                      x1={32 + Math.cos(a) * 14}
-                      y1={32 + Math.sin(a) * 14}
-                      x2={32 + Math.cos(a) * 20}
-                      y2={32 + Math.sin(a) * 20}
-                      stroke="#0C4F81"
-                      strokeWidth="1.5"
+                      x1={105 + Math.cos(a) * 7}
+                      y1={157 + Math.sin(a) * 7}
+                      x2={105 + Math.cos(a) * 11}
+                      y2={157 + Math.sin(a) * 11}
+                      stroke="#FFA62B"
+                      strokeWidth="1"
                       strokeLinecap="round"
                     />
                   );
                 })}
+                <circle cx="105" cy="157" r="5" fill="#FFA62B" opacity="0.6" />
+                {/* Green checkmark badge */}
+                <circle cx="120" cy="46" r="14" fill="#22c55e" />
+                <circle cx="120" cy="46" r="14" fill="white" opacity="0.2" />
                 <path
-                  d="M22 32l7 7 13-13"
-                  stroke="#22c55e"
-                  strokeWidth="3"
+                  d="M113 46l5 5 9-9"
+                  stroke="white"
+                  strokeWidth="2.5"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 />
               </svg>
             </div>
-          </div>
 
-          {/* Card body */}
-          <div className="px-8 pb-8 pt-3 flex flex-col items-center text-center">
-            <h2 className="text-2xl font-extrabold text-[#0C4F81] mt-1">
+            <h2 className="text-2xl font-extrabold text-[#0C4F81]">
               Tanda Tangan Berhasil!
             </h2>
-            <p className="text-sm text-gray-500 mt-1 mb-5 leading-relaxed">
-              Dokumen{" "}
-              <span className="font-bold text-[#0C4F81] break-all">
-                {originalFileName}
-              </span>{" "}
-              telah berhasil ditandatangani secara digital menggunakan{" "}
-              <span className="font-semibold">
-                Tanda Tangan Elektronik (TTE)
-              </span>{" "}
-              tersertifikasi.
+            <p className="text-sm text-gray-500 mt-2 mb-6 leading-relaxed">
+              Dokumen telah berhasil ditandatangani secara digital dan otomatis
+              diunduh ke perangkat Anda.
             </p>
 
-            {/* Auto-download info box */}
-            <div className="w-full bg-gradient-to-r from-[#E8F7FF] to-[#FFF8E6] border border-[#2FAAE1]/40 rounded-2xl px-5 py-4 mb-5 flex items-start gap-3 text-left">
-              <div className="w-8 h-8 rounded-full bg-[#2FAAE1]/20 flex items-center justify-center shrink-0 mt-0.5">
-                <svg
-                  className="w-4 h-4 text-[#0C4F81]"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 3v12"
-                  />
-                </svg>
+            {/* Info row */}
+            <div className="w-full grid grid-cols-2 gap-3 mb-6">
+              <div className="bg-[#E8F7FF] rounded-2xl px-4 py-3 text-left">
+                <p className="text-[10px] text-gray-400 uppercase tracking-widest mb-0.5">
+                  Status
+                </p>
+                <p className="text-sm font-bold text-green-600 flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-green-500 inline-block" />
+                  Tersertifikasi
+                </p>
               </div>
-              <p className="text-sm text-[#0C4F81] leading-relaxed">
-                Dokumen yang telah ditandatangani secara otomatis telah{" "}
-                <strong>diunduh ke perangkat Anda</strong>.
-              </p>
-            </div>
-
-            {/* Detail keterangan resmi */}
-            <div className="w-full border border-dashed border-[#0C4F81]/25 rounded-2xl px-5 py-4 mb-6 text-left relative overflow-hidden">
-              <p className="text-[10px] font-bold text-[#0C4F81] uppercase tracking-widest mb-3">
-                Keterangan Dokumen
-              </p>
-              <div className="space-y-2 text-xs text-gray-600">
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-400">Status</span>
-                  <span className="font-semibold text-green-600 flex items-center gap-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-green-500 inline-block" />
-                    Tersertifikasi
-                  </span>
-                </div>
-                <div className="w-full h-px bg-gray-100" />
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-400">Jenis TTE</span>
-                  <span className="font-semibold text-[#0C4F81]">
-                    TTE Tersertifikasi BSrE
-                  </span>
-                </div>
-                <div className="w-full h-px bg-gray-100" />
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-400">Tanggal</span>
-                  <span className="font-semibold text-[#0C4F81]">
-                    {new Date().toLocaleDateString("id-ID", {
-                      day: "2-digit",
-                      month: "long",
-                      year: "numeric",
-                    })}
-                  </span>
-                </div>
-                <div className="w-full h-px bg-gray-100" />
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-400">Waktu</span>
-                  <span className="font-semibold text-[#0C4F81]">
-                    {new Date().toLocaleTimeString("id-ID", {
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    })}{" "}
-                    WIB
-                  </span>
-                </div>
+              <div className="bg-[#FFF8E6] rounded-2xl px-4 py-3 text-left">
+                <p className="text-[10px] text-gray-400 uppercase tracking-widest mb-0.5">
+                  Jenis
+                </p>
+                <p className="text-sm font-bold text-[#0C4F81]">BSrE</p>
+              </div>
+              <div className="col-span-2 bg-gray-50 rounded-2xl px-4 py-3 text-left">
+                <p className="text-[10px] text-gray-400 uppercase tracking-widest mb-0.5">
+                  Waktu Penandatanganan
+                </p>
+                <p className="text-sm font-bold text-[#0C4F81]">
+                  {new Date().toLocaleDateString("id-ID", {
+                    day: "2-digit",
+                    month: "long",
+                    year: "numeric",
+                  })}
+                  {" · "}
+                  {new Date().toLocaleTimeString("id-ID", {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}{" "}
+                  WIB
+                </p>
               </div>
             </div>
 
-            {/* Star divider ornament */}
+            {/* Star divider */}
             <div className="w-full flex items-center gap-2 mb-5">
               <div className="flex-1 h-px bg-gradient-to-r from-transparent to-[#2FAAE1]/40" />
-              {[14, 18, 14].map((s, i) => (
+              {[12, 16, 12].map((s, i) => (
                 <svg
                   key={i}
                   style={{ width: s, height: s }}
-                  className="text-[#FFA62B] shrink-0"
+                  className="text-[#FFA62B]"
                   viewBox="0 0 20 20"
                   fill="currentColor"
                 >
@@ -307,7 +402,6 @@ export default function Step4Result({
               <div className="flex-1 h-px bg-gradient-to-l from-transparent to-[#2FAAE1]/40" />
             </div>
 
-            {/* CTA */}
             <button
               type="button"
               onClick={onReset}
@@ -317,15 +411,35 @@ export default function Step4Result({
             </button>
           </div>
 
-          {/* Card bottom accent stripe */}
+          {/* Bottom stripe */}
           <div className="h-1.5 bg-gradient-to-r from-[#FFA62B] via-[#2FAAE1] to-[#0C4F81]" />
         </div>
       </div>
 
-      <HeaderLogo />
+      {/* Header Logo */}
+      <div className="absolute top-5 left-5 z-50 hidden sm:block">
+        <Image
+          src="/assets/images/logo-blpid-1.png"
+          alt="BLPID"
+          width={220}
+          height={56}
+          className="object-contain h-14 w-auto"
+          priority
+        />
+      </div>
 
       {/* Floating Logo */}
-      <FooterLogo />
+      <div className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-10">
+        <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white flex items-center justify-center shadow-lg border border-gray-100">
+          <Image
+            src="/assets/images/logo-blpid.png"
+            alt="Logo BLPID"
+            width={48}
+            height={48}
+            className="object-contain w-9 h-9 sm:w-12 sm:h-12"
+          />
+        </div>
+      </div>
     </div>
   );
 }
