@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pdf-sign-packing
+  namespace: blpid-pdfsignpacking-dev
+  labels:
+    app: pdf-sign-packing
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pdf-sign-packing
+  template:
+    metadata:
+      labels:
+        app: pdf-sign-packing
+    spec:
+      containers:
+        - name: pdf-sign-packing
+          image: image-registry.openshift-image-registry.svc:5000/blpid-pdfsignpacking-dev/blpid-pdfsignpacking-dev:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          env:
+            - name: NODE_ENV
+              value: "production"
+            - name: NEXT_TELEMETRY_DISABLED
+              value: "1"
+            - name: PORT
+              value: "3000"
+            - name: HOSTNAME
+              value: "0.0.0.0"
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "100m"
+            limits:
+              memory: "512Mi"
+              cpu: "250m"
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            runAsUser: 1001
+            capabilities:
+              drop: ["ALL"]
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 10
+            timeoutSeconds: 5
+            periodSeconds: 10
+            failureThreshold: 3
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 30
+            timeoutSeconds: 5
+            periodSeconds: 30
+            failureThreshold: 5
+      restartPolicy: Always

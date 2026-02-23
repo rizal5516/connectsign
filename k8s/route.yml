@@ -1,0 +1,16 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: pdf-sign-packing
+  namespace: blpid-pdfsignpacking-dev
+  labels:
+    app: pdf-sign-packing
+spec:
+  to:
+    kind: Service
+    name: pdf-sign-packing
+  port:
+    targetPort: http
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
