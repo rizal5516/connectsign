@@ -10,7 +10,7 @@ import { HiLightBulb } from 'react-icons/hi'
 export default function Home() {
     const signerList = [
         // { name: "Ega Rahmatul", nik: "1306146705000001" },
-        { name: "Muhammad Rizal Qowi", nik: "3310045708020003" },
+        { name: "Muhammad Rizal Qowi", nik: "3671011707010004" },
     ]
 
     const [pdfFiles, setPdfFiles] = useState<File[]>([])
